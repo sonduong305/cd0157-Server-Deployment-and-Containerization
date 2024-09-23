@@ -40,6 +40,7 @@ phases:
       - export KUBECONFIG=$HOME/.kube/config
       - echo `ls -l`
       - pip install -r requirements.txt
+      - python3 -m pytest test_main.py
   build:
     commands:
       - docker build --tag $REPOSITORY_URI:$TAG .
@@ -54,6 +55,3 @@ phases:
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
 artifacts:
   files: build.json
-env:
-  parameter-store:         
-    JWT_SECRET: JWT_SECRET
