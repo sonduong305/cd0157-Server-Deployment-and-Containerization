@@ -1,0 +1,22 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: simple-jwt-api-2
+  region: us-east-2
+
+iam:
+  serviceRoleARN: arn:aws:iam::526175510109:role/eksctl-simple-jwt-api-cluster-ServiceRole-SB61AilTLPXq
+
+managedNodeGroups:
+  - name: ng-1
+    instanceType: t3.micro
+    minSize: 2
+    maxSize: 3
+    desiredCapacity: 2
+    privateNetworking: false
+
+addons:
+  - name: vpc-cni
+  - name: coredns
+  - name: kube-proxy
